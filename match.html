@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Match readiness — Psychiatry — concept mockup</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css" rel="stylesheet">
+<style>
+:root{
+  --surface-0:#f5f4f2; --surface-1:#eeece7; --surface-2:#ffffff;
+  --text-primary:#1a1a18; --text-secondary:#5f5e5a; --text-muted:#8a8a85;
+  --text-accent:#185fa5;
+  --border:rgba(0,0,0,.10); --border-strong:rgba(0,0,0,.18);
+  --bg-danger:#fcebeb; --on-danger:#501313;
+  --bg-warning:#faeeda; --on-warning:#412402; --sub-warning:#633806; --dot-warning:#ef9f27;
+  --bg-success:#dcecc6; --on-success:#173404;
+  --radius:8px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --surface-0:#1a1a18; --surface-1:#242422; --surface-2:#2b2b28;
+    --text-primary:#f5f4f1; --text-secondary:#b4b2a9; --text-muted:#888780;
+    --text-accent:#85b7eb;
+    --border:rgba(255,255,255,.12); --border-strong:rgba(255,255,255,.22);
+    --bg-danger:#3a1414; --on-danger:#f7c1c1;
+    --bg-warning:#3a2506; --on-warning:#fac775; --sub-warning:#ef9f27;
+    --bg-success:#2c4417; --on-success:#c0dd97;
+  }
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--surface-0); color:var(--text-primary);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:780px; margin:0 auto; padding:2.5rem 1.25rem 4rem}
+h1{font-size:22px; font-weight:500; margin:0 0 4px; line-height:1.3}
+h2{font-size:16px; font-weight:500; margin:0 0 4px}
+p{margin:0}
+a{color:var(--text-accent); text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible{outline:2px solid var(--text-accent); outline-offset:2px; border-radius:2px}
+.sub{font-size:13px; color:var(--text-secondary)}
+.fine{font-size:12px; color:var(--text-muted)}
+.banner{background:var(--surface-1); border-radius:var(--radius); padding:.6rem .9rem; font-size:13px; color:var(--text-secondary); margin-bottom:1.75rem}
+.metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin:1.25rem 0}
+.metric{background:var(--surface-1); border-radius:var(--radius); padding:1rem}
+.metric .label{font-size:13px; color:var(--text-secondary); margin-bottom:4px}
+.metric .value{font-size:24px; font-weight:500; line-height:1.2}
+.metric .note{font-size:12px; color:var(--text-muted); margin-top:2px}
+.metric.lead{background:var(--bg-warning)}
+.metric.lead .label,.metric.lead .note{color:var(--sub-warning)}
+.metric.lead .value{color:var(--on-warning)}
+.section{margin:1.75rem 0 .75rem}
+.card{background:var(--surface-2); border:.5px solid var(--border); border-radius:12px; padding:1rem 1.25rem; margin-bottom:12px}
+.card.flat{background:var(--surface-1); border:none}
+.card.list{padding:.5rem 1.25rem}
+.head{display:flex; align-items:flex-start; justify-content:space-between; gap:12px}
+.head .name{font-size:15px; font-weight:500}
+.tags{display:flex; gap:6px 14px; flex-wrap:wrap; font-size:12px; color:var(--text-secondary); margin-top:6px}
+.body{font-size:13px; color:var(--text-secondary); margin:10px 0}
+.pill{display:inline-flex; align-items:center; font-size:12px; padding:3px 10px; border-radius:99px; white-space:nowrap; flex-shrink:0}
+.pill.high{background:var(--bg-danger); color:var(--on-danger)}
+.pill.med{background:var(--bg-warning); color:var(--on-warning)}
+.pill.low{background:var(--bg-success); color:var(--on-success)}
+.rel{display:inline-flex; gap:3px; vertical-align:-1px; margin:0 6px}
+.rel span{width:6px; height:6px; border-radius:1px; background:var(--border-strong)}
+.rel span.on{background:var(--text-secondary)}
+.links{display:flex; flex-wrap:wrap; gap:8px 20px; align-items:center}
+.links a{font-size:13px}
+.links a.primary{font-weight:500}
+.links i{font-size:16px; vertical-align:-2px; margin-right:5px}
+.row{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 0; border-bottom:.5px solid var(--border)}
+.row:last-child{border-bottom:none}
+.row .name{font-size:14px}
+.row .meta{font-size:13px; color:var(--text-secondary)}
+.row a{font-size:13px}
+.scale{position:relative; height:34px; margin:6px 0 4px}
+.scale .track{position:absolute; top:13px; left:0; right:0; height:8px; border-radius:4px; background:var(--surface-1)}
+.scale .band{position:absolute; top:13px; left:45%; width:17.5%; height:8px; border-radius:4px; background:var(--bg-success)}
+.scale .you{position:absolute; top:9px; left:40.5%; width:9%; height:16px; border-radius:4px; background:var(--dot-warning)}
+.scale .passline{position:absolute; top:6px; left:12.5%; width:2px; height:22px; background:var(--border-strong)}
+.ticks{position:relative; height:18px; font-size:11px; color:var(--text-muted)}
+.ticks span{position:absolute; transform:translateX(-50%)}
+.key{display:flex; gap:20px; flex-wrap:wrap; font-size:12px; color:var(--text-secondary); margin-top:10px}
+.swatch{display:inline-block; width:10px; height:8px; border-radius:2px; margin-right:6px}
+.foot{font-size:12px; color:var(--text-muted); margin-top:1.75rem; border-top:.5px solid var(--border); padding-top:1rem}
+.nav{display:flex; gap:18px; flex-wrap:wrap; font-size:13px; padding-bottom:1rem; margin-bottom:1.25rem; border-bottom:.5px solid var(--border)}
+.nav .here{color:var(--text-primary); font-weight:500}
+.nav a{color:var(--text-secondary)}
+.nav a:hover{color:var(--text-accent)}
+@media (max-width:560px){
+  .head{flex-direction:column; align-items:flex-start; gap:6px}
+  .row{flex-direction:column; align-items:flex-start; gap:2px}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <nav class="nav">
+    <a href="./">Level 1 exam risk</a>
+    <span class="here" aria-current="page">Psychiatry match readiness</span>
+  </nav>
+
+  <p class="banner">Concept mockup for discussion. All figures, benchmarks, categories, and links are illustrative placeholders and are not connected to live data or published match statistics.</p>
+
+  <h1>Your match readiness — Psychiatry</h1>
+  <p class="sub">COMLEX Level 2-CE on 22 Feb 2027 · ERAS submission Sep 2027 · Match Day Mar 2028</p>
+
+  <div class="metrics">
+    <div class="metric lead">
+      <div class="label">Match likelihood</div>
+      <div class="value">61–78%</div>
+      <div class="note">Moderate confidence</div>
+    </div>
+    <div class="metric">
+      <div class="label">Level 2-CE projection</div>
+      <div class="value">512–548</div>
+      <div class="note">Matched DO psych: 530–600</div>
+    </div>
+    <div class="metric">
+      <div class="label">Signal coverage</div>
+      <div class="value">4 of 9</div>
+      <div class="note">Inputs we can see</div>
+    </div>
+    <div class="metric">
+      <div class="label">Level 1</div>
+      <div class="value">Passed</div>
+      <div class="note">Pass/fail — not ranked</div>
+    </div>
+  </div>
+
+  <div class="card flat">
+    <p class="body" style="margin:0">This estimate reflects what we can measure. It doesn't know your letters, interviews, clerkship evaluations, or how many programs you'll rank — and in psychiatry those carry more weight than your score. Treat the range as a floor to work from, not a forecast.</p>
+  </div>
+
+  <div class="section">
+    <h2>Where your Level 2-CE score is heading</h2>
+    <p class="sub">Level 1 is pass/fail, so this is the only numeric score programs will see. Based on your COMSAE 2 forms and 2,140 questions completed.</p>
+  </div>
+
+  <div class="card">
+    <div class="scale" role="img" aria-label="Your projected Level 2-CE range of 512 to 548 sits just below the 530 to 600 band of matched DO psychiatry applicants. The passing score is 400.">
+      <div class="track"></div>
+      <div class="band"></div>
+      <div class="you"></div>
+      <div class="passline"></div>
+    </div>
+    <div class="ticks">
+      <span style="left:12.5%">400 pass</span>
+      <span style="left:45%; color:var(--text-secondary)">530</span>
+      <span style="left:62.5%; color:var(--text-secondary)">600</span>
+    </div>
+    <div class="key">
+      <span><span class="swatch" style="background:var(--dot-warning)"></span>Your projected range</span>
+      <span><span class="swatch" style="background:var(--bg-success)"></span>Middle 50% of matched DO psychiatry applicants</span>
+    </div>
+    <p class="body">Your range sits just under the matched band. Closing roughly 25 points would put you inside it — and the two categories below account for most of that gap.</p>
+    <div class="links"><a class="primary" href="#"><i class="ti ti-upload" aria-hidden="true"></i>Upload a newer COMSAE to tighten this range</a></div>
+  </div>
+
+  <div class="section">
+    <h2>What we're missing</h2>
+    <p class="sub">Each item you add narrows the likelihood range.</p>
+  </div>
+
+  <div class="card list">
+    <div class="row">
+      <div><span class="name">COMSAE Form 2 scores</span> <span class="meta">2 forms uploaded</span></div>
+      <span class="pill low">Have it</span>
+    </div>
+    <div class="row">
+      <div><span class="name">Question bank performance</span> <span class="meta">2,140 questions</span></div>
+      <span class="pill low">Have it</span>
+    </div>
+    <div class="row">
+      <div><span class="name">Clerkship grades and shelf scores</span></div>
+      <a href="#">Add</a>
+    </div>
+    <div class="row">
+      <div><span class="name">Research, posters, and publications</span></div>
+      <a href="#">Add</a>
+    </div>
+    <div class="row">
+      <div><span class="name">Psychiatry letters of recommendation</span></div>
+      <a href="#">Add</a>
+    </div>
+    <div class="row">
+      <div><span class="name">Geographic preference and program signals</span></div>
+      <a href="#">Add</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Focus areas for psychiatry</h2>
+    <p class="sub">Rated two ways: your exam risk, and how much the material carries into psychiatry residency.</p>
+    <div class="key" style="margin-top:8px">
+      <span>Specialty relevance<span class="rel"><span class="on"></span><span class="on"></span><span class="on"></span></span>core to the specialty</span>
+      <span><span class="rel"><span class="on"></span><span></span><span></span></span>rarely used after Level 2</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <div>
+        <div class="name">Nervous system and mental health</div>
+        <div class="tags">
+          <span>12% of blueprint</span><span>your accuracy 54% · peers 67%</span>
+          <span>Psychiatry relevance<span class="rel"><span class="on"></span><span class="on"></span><span class="on"></span></span></span>
+        </div>
+      </div>
+      <span class="pill high">High risk</span>
+    </div>
+    <p class="body">Your largest exam gap is also the clinical core of the specialty you're applying to. Programs will see this weakness twice: once in your score, and again on your psychiatry clerkship and audition rotations. Misses cluster in psychopharmacology and in distinguishing primary psychiatric presentations from medical mimics.</p>
+    <div class="links">
+      <a class="primary" href="#"><i class="ti ti-file-plus" aria-hidden="true"></i>Build a 40-question practice test</a>
+      <a href="#"><i class="ti ti-book" aria-hidden="true"></i>Antipsychotics: choosing by side-effect profile</a>
+      <a href="#"><i class="ti ti-book" aria-hidden="true"></i>Delirium, dementia, and depression side by side</a>
+      <a href="#"><i class="ti ti-book" aria-hidden="true"></i>Serotonin syndrome vs neuroleptic malignant syndrome</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <div>
+        <div class="name">Substance use and withdrawal management</div>
+        <div class="tags">
+          <span>part of behavioral health</span><span>your accuracy 58% · peers 69%</span>
+          <span>Psychiatry relevance<span class="rel"><span class="on"></span><span class="on"></span><span class="on"></span></span></span>
+        </div>
+      </div>
+      <span class="pill med">Medium risk</span>
+    </div>
+    <p class="body">A modest share of the exam, but consult and emergency psychiatry run on it. Worth treating as higher priority than its blueprint weight suggests.</p>
+    <div class="links">
+      <a class="primary" href="#"><i class="ti ti-file-plus" aria-hidden="true"></i>Build a 30-question practice test</a>
+      <a href="#"><i class="ti ti-book" aria-hidden="true"></i>Alcohol withdrawal timelines and thresholds</a>
+      <a href="#"><i class="ti ti-book" aria-hidden="true"></i>Opioid use disorder in the inpatient setting</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <div>
+        <div class="name">Endocrine and metabolic</div>
+        <div class="tags">
+          <span>7% of blueprint</span><span>your accuracy 59% · peers 66%</span>
+          <span>Psychiatry relevance<span class="rel"><span class="on"></span><span class="on"></span><span></span></span></span>
+        </div>
+      </div>
+      <span class="pill med">Medium risk</span>
+    </div>
+    <p class="body">Relevant to psychiatry mainly through medical mimics and metabolic monitoring on antipsychotics. Only 61 questions answered, so this rating is still uncertain.</p>
+    <div class="links">
+      <a class="primary" href="#"><i class="ti ti-file-plus" aria-hidden="true"></i>Build a 30-question practice test</a>
+      <a href="#"><i class="ti ti-book" aria-hidden="true"></i>Thyroid disease presenting as mood disorder</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <div>
+        <div class="name">Capacity, consent, and ethics</div>
+        <div class="tags">
+          <span>health systems domain</span><span>your accuracy 71% · peers 70%</span>
+          <span>Psychiatry relevance<span class="rel"><span class="on"></span><span class="on"></span><span class="on"></span></span></span>
+        </div>
+      </div>
+      <span class="pill low">Low risk</span>
+    </div>
+    <p class="body">Not an exam threat, but involuntary holds and capacity assessments are daily work in residency. Keeping this sharp is a specialty investment rather than a score one.</p>
+    <div class="links">
+      <a class="primary" href="#"><i class="ti ti-file-plus" aria-hidden="true"></i>Build a 20-question practice test</a>
+      <a href="#"><i class="ti ti-book" aria-hidden="true"></i>Decision-making capacity in four questions</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Matters for your score, not your specialty</h2>
+    <p class="sub">You won't use much of this in a psychiatry residency, but it's a large share of the number programs will screen on.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <div>
+        <div class="name">Musculoskeletal system, including OMM</div>
+        <div class="tags">
+          <span>13% of blueprint</span><span>your accuracy 48% · peers 67%</span>
+          <span>Psychiatry relevance<span class="rel"><span class="on"></span><span></span><span></span></span></span>
+        </div>
+      </div>
+      <span class="pill high">High risk</span>
+    </div>
+    <p class="body">The largest single threat to your Level 2-CE score, and the easiest one to rationalize skipping because it's far from psychiatry. It's roughly half the 25-point gap to the matched band.</p>
+    <div class="links">
+      <a class="primary" href="#"><i class="ti ti-file-plus" aria-hidden="true"></i>Build a 40-question practice test</a>
+      <a href="#"><i class="ti ti-book" aria-hidden="true"></i>Chapman's points: a systems-based review</a>
+      <a href="#"><i class="ti ti-book" aria-hidden="true"></i>Somatic dysfunction of the sacrum and pelvis</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <div>
+        <div class="name">Circulatory and hematologic systems</div>
+        <div class="tags">
+          <span>11% of blueprint</span><span>your accuracy 61% · peers 68%</span>
+          <span>Psychiatry relevance<span class="rel"><span class="on"></span><span></span><span></span></span></span>
+        </div>
+      </div>
+      <span class="pill med">Medium risk</span>
+    </div>
+    <p class="body">Anemia workup is the recurring gap. A short block should be enough here.</p>
+    <div class="links">
+      <a class="primary" href="#"><i class="ti ti-file-plus" aria-hidden="true"></i>Build a 30-question practice test</a>
+      <a href="#"><i class="ti ti-book" aria-hidden="true"></i>Reading the anemia workup from MCV outward</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Beyond the exam</h2>
+    <p class="sub">Program directors in psychiatry consistently rank these above board scores. They're also the parts of your application still fully in your hands.</p>
+  </div>
+
+  <div class="card list">
+    <div class="row">
+      <div>
+        <div class="name">Psychiatry letters of recommendation</div>
+        <div class="meta">1 identified, 3 is typical</div>
+      </div>
+      <a href="#">Plan letters</a>
+    </div>
+    <div class="row">
+      <div>
+        <div class="name">Audition rotations</div>
+        <div class="meta">None scheduled — applications open Feb 2027</div>
+      </div>
+      <a href="#">Find programs</a>
+    </div>
+    <div class="row">
+      <div>
+        <div class="name">Program signals and geography</div>
+        <div class="meta">Not set — signals matter more in psychiatry than most specialties</div>
+      </div>
+      <a href="#">Set preferences</a>
+    </div>
+    <div class="row">
+      <div>
+        <div class="name">Scholarly activity</div>
+        <div class="meta">1 poster recorded</div>
+      </div>
+      <a href="#">Add activity</a>
+    </div>
+  </div>
+
+  <p class="foot">Likelihood is modeled from your question bank performance, uploaded COMSAE scores, and published match outcomes for DO applicants in psychiatry. It assumes an application to a typical number of programs and cannot account for interviews, letters, or rank list strategy. Ranges widen when we have less data, not less confidence in you.</p>
+
+</main>
+</body>
+</html>
